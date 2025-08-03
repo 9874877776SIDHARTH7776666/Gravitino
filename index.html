@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gravitino - Meme Coin of Cosmic Chaos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at center, #0c0c1e, #000);
+      color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, #31005f 0%, #000000 100%);
+      position: relative;
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 4rem;
+      color: #00fff7;
+      text-shadow: 0 0 20px #00fff7;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 700px;
+      margin: 0 auto 2rem auto;
+    }
+
+    .btn {
+      background: linear-gradient(90deg, #00fff0, #7b2ff7);
+      color: #000;
+      padding: 0.9rem 2rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin: 0 1rem;
+      cursor: pointer;
+      box-shadow: 0 0 15px #00fff0;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #00fff0;
+    }
+
+    nav {
+      background: rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #00fff0;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #7b2ff7;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+    }
+
+    .tokenomics ul, .roadmap ul {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .tokenomics li, .roadmap li {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+      padding-left: 1rem;
+      border-left: 3px solid #7b2ff7;
+    }
+
+    .community img {
+      width: 50px;
+      margin: 10px;
+      filter: drop-shadow(0 0 5px #00fff7);
+      transition: transform 0.3s;
+    }
+
+    .community img:hover {
+      transform: scale(1.2);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-box {
+      background: #111120;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 20px rgba(0, 255, 247, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .feature-box:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-box h3 {
+      color: #7b2ff7;
+      margin-bottom: 1rem;
+    }
+
+    .wallet-section {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .wallet-address {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #00fff0;
+      word-break: break-all;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #050512;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="starfield"></canvas>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#community">Community</a>
+  </nav>
+
+  <header>
+    <h1>Gravitino</h1>
+    <p>Quantum-powered meme coin warping space, time, and memes into your wallet. No escape from gravity.</p>
+    <button class="btn">🚀 Launch App</button>
+    <button class="btn">📜 Read Whitepaper</button>
+  </header>
+
+  <section id="wallet-connect" class="wallet-section">
+    <h2>🔗 Connect Your Wallet</h2>
+    <button class="btn" onclick="connectWallet()">🔌 Connect Wallet</button>
+    <div id="walletAddress" class="wallet-address"></div>
+  </section>
+
+  <section id="about">
+    <h2>What Is Gravitino?</h2>
+    <p>
+      Gravitino isn’t just a coin. It's a subatomic rebellion. Built on cosmic principles, its gravity sucks in memes, market trends, and chaos alike. Designed to reward early explorers and meme astronauts, it’s the black hole of gains you can’t escape.
+    </p>
+  </section>
+
+  <!-- other sections remain unchanged -->
+
+  <footer>
+    <p>&copy; 2025 Gravitino. Built with gravity, memes, and degeneracy. Smart Contract: 0xYourSmartContract</p>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    for (let i = 0; i < 400; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.5,
+        speed: Math.random() * 0.8 + 0.3
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#fff';
+      for (const star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, 2 * Math.PI);
+        ctx.fill();
+        star.y += star.speed;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+      requestAnimationFrame(drawStars);
+    }
+
+    drawStars();
+
+    async function connectWallet() {
+      if (typeof window.ethereum !== 'undefined') {
+        try {
+          const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+          document.getElementById('walletAddress').innerText = `Connected: ${accounts[0]}`;
+        } catch (error) {
+          alert('Wallet connection rejected.');
+        }
+      } else {
+        alert('MetaMask not detected. Please install it.');
+      }
+    }
+  </script>
+</body>
+</html>
